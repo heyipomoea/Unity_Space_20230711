@@ -1,25 +1,45 @@
-using System;
+ï»¿using System;
 using UnityEngine;
 
 
 namespace heyipomoea
 {
     /// <summary>
-    /// ³õ´ººŞ²z¾¹:¤Á´«³õ´º, °h¥X¹CÀ¸
+    /// å ´æ™¯ç®¡ç†å™¨:åˆ‡æ›å ´æ™¯, é€€å‡ºéŠæˆ²
     /// </summary>
     public class SceneManager : MonoBehaviour
     {
-        public void ChangScene()
+        [SerializeField, Range(0.3f, 3.5f), Header("éŸ³æ•ˆæ™‚é–“")]
+        private float soundDuration = 3.0f;
+        private string nameSceneToChang;
+
+        /// <summary>
+        /// é€éå­—ä¸²åˆ‡æ›å ´æ™¯
+        /// </summary>
+        /// <param name="nameScene">å ´æ™¯åç¨±</param>
+        public void ChangScene(string nameScene)
         {
-            print("¤Á´«¹CÀ¸");
-            UnityEngine.SceneManagement.SceneManager.LoadScene("¹CÀ¸³õ´º");
+            nameSceneToChang = nameScene;
+            Invoke("DelayChangScene", soundDuration);
         }
 
-       
+        public void DelayChangScene()
+        {
+            print("åˆ‡æ›éŠæˆ²");
+            UnityEngine.SceneManagement.SceneManager.LoadScene(nameSceneToChang);
+        }
 
+        /// <summary>
+        /// é›¢é–‹éŠæˆ²
+        /// </summary>
         public void Quit()
         {
-            print("Â÷¶}¹CÀ¸");
+            Invoke("DelayQuit", soundDuration);
+        }
+
+        public void DelayQuit()
+        {
+            print("é›¢é–‹éŠæˆ²");
             Application.Quit();
         }
     }
