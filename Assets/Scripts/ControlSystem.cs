@@ -8,6 +8,7 @@ namespace heyipomoea_twoD
     /// </summary>
     public class ControlSystem : MonoBehaviour
     {
+        #region 資料
         [SerializeField, Header("移動速度"), Range(0, 500)]
         private float moveSpeed = 3.5f;
         [SerializeField, Header("檢查地板尺寸")]
@@ -23,7 +24,10 @@ namespace heyipomoea_twoD
         private Rigidbody2D rig;
         private Animator ani;
         private string parRun = "開關跑步";
+        private string parJump = "開關跳躍";
+        #endregion
 
+        #region 事件
         private void OnDrawGizmos()
         {
             Gizmos.color = new Color(1, 0, 0.3f, 0.5f);
@@ -47,10 +51,16 @@ namespace heyipomoea_twoD
             //CheckGround();
             Jump();
         }
+        #endregion
+
+        #region 方法
+        /// <summary>
+        /// 判斷是否在地面 && 按空白鍵跳躍
+        /// </summary>
 
         private void Jump()
         {
-            if(CheckGround() && Input.GetKeyDown(KeyCode.Space))
+            if (CheckGround() && Input.GetKeyDown(KeyCode.Space))
             {
                 rig.AddForce(new Vector2(0, jumpPower));
             }
@@ -66,12 +76,14 @@ namespace heyipomoea_twoD
             float h = Input.GetAxis("Horizontal");
             rig.velocity = new Vector2(h * moveSpeed, rig.velocity.y);
 
-            if (Input.GetKeyDown(KeyCode.A))
+            //if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+            if (h < 0)
             {
                 print("按下A");
                 transform.eulerAngles = Vector3.zero;
             }
-            else if (Input.GetKeyDown(KeyCode.D))
+            //else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+            else if (h > 0)
             {
                 print("按下D");
                 transform.eulerAngles = new Vector3(0, 180, 0);
@@ -79,13 +91,20 @@ namespace heyipomoea_twoD
 
             ani.SetBool(parRun, h != 0);
         }
-        
+
+        /// <summary>
+        /// 判斷角色是否在地板
+        /// </summary>
+        /// <returns></returns>
+
         private bool CheckGround()
         {
             Collider2D hit = Physics2D.OverlapBox(transform.position + v3CheckGroundOffset, v3CheckGroundSize, 0, layerCheckGround);
             //print($"碰到的物件:{hit.name}");
+            ani.SetBool(parJump, !hit);
             return hit;
-        }
+        } 
+        #endregion
     }
 }
 
