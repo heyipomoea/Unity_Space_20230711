@@ -1,22 +1,22 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 
 namespace Heyipomoea
 {
     /// <summary>
-    /// ¶}ºj¨t²Î
+    /// é–‹æ§ç³»çµ±
     /// </summary>
     public class FireSystem : MonoBehaviour
     {
-        [SerializeField, Header("¤l¼u¹w»sª«")]
+        [SerializeField, Header("å­å½ˆé è£½ç‰©")]
         private GameObject prefabBullet;
-        [SerializeField, Header("¥Í¦¨¤l¼u¦ì¸m")]
+        [SerializeField, Header("ç”Ÿæˆå­å½ˆä½ç½®")]
         private Transform pointBullet;
-        [SerializeField, Header("µo®g¤l¼u¤O¹D"), Range(0, 5000)]
+        [SerializeField, Header("ç™¼å°„å­å½ˆåŠ›é“"), Range(0, 5000)]
         private float powerBullet = 1000;
 
         private Animator ani;
-        private string parFire = "Ä²µo¶}ºj";
+        private string parFire = "è§¸ç™¼é–‹æ§";
 
 
         private void Awake()
@@ -30,7 +30,7 @@ namespace Heyipomoea
         }
 
         /// <summary>
-        /// ¶}ºj
+        /// é–‹æ§
         /// </summary>
         private void Fire()
         {
