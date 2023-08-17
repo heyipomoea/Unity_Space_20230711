@@ -2,7 +2,7 @@
 using UnityEngine;
 
 
-namespace heyipomoea
+namespace heyipomoea.SceneManager
 {
     /// <summary>
     /// 場景管理器:切換場景, 退出遊戲

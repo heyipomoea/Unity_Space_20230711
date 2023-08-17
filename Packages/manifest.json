@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.kid.tools": "https://github.com/KID421/com.kid.tools.git",
     "com.unity.2d.animation": "9.0.3",
     "com.unity.2d.pixel-perfect": "5.0.3",
     "com.unity.2d.psdimporter": "8.0.2",
