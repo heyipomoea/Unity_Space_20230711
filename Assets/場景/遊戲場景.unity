@@ -9185,6 +9185,7 @@ GameObject:
   - component: {fileID: 441226853}
   - component: {fileID: 441226854}
   - component: {fileID: 441226855}
+  - component: {fileID: 441226856}
   m_Layer: 0
   m_Name: "\u592A\u7A7A\u54E1"
   m_TagString: Player
@@ -9279,6 +9280,7 @@ Transform:
   m_Children:
   - {fileID: 1122510837}
   - {fileID: 682602091}
+  - {fileID: 515904336}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9363,6 +9365,20 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   jumpPower: 1000
+--- !u!114 &441226856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 441226849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c6ba2ed501d3e143a2af978d2e7dc2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabBullet: {fileID: 8057190692483621864, guid: fc4fc73c28ea5d2488bdec9d138d5e7b, type: 3}
+  pointBullet: {fileID: 515904336}
 --- !u!1001 &467977516
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9429,6 +9445,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1588893632859059325, guid: 97ada9cf5da78e642a1da0fa4d94ec37, type: 3}
   m_PrefabInstance: {fileID: 467977516}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &515904335
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 515904336}
+  m_Layer: 0
+  m_Name: "\u5B50\u5F48\u751F\u6210\u4F4D\u7F6E"
+  m_TagString: Untagged
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &515904336
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 515904335}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.05, y: 0.48, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 441226852}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &606151857
 GameObject:
   m_ObjectHideFlags: 0
@@ -19965,7 +20012,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 606151866}
+  selectedFlowchart: {fileID: 1871024479}
 --- !u!4 &1407424567
 Transform:
   m_ObjectHideFlags: 1
