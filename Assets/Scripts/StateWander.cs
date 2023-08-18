@@ -25,6 +25,16 @@ namespace Heyipomoea.TwoD
         private string parWalk = "開關走路";
         private Rigidbody2D rig;
 
+        [SerializeField, Header("遊走狀態")]
+        private StateIdle stateIdle;
+        [SerializeField, Header("是否開始游走")]
+        private bool startIdle;
+        [SerializeField, Header("等待狀態的隨機時間範圍")]
+        private Vector2 rangeWanderTime = new Vector2(0, 3);
+
+        private float timeWander;
+        private float timer;
+
         private void OnDrawGizmos()
         {
             Gizmos.color = new Color(0, 0.8f, 0.9f, 1);
@@ -35,6 +45,7 @@ namespace Heyipomoea.TwoD
         private void Start()
         {
             rig = GetComponent<Rigidbody2D>();
+            timeWander = Random.Range(rangeWanderTime.x, rangeWanderTime.y);
         }
 
 
@@ -52,7 +63,19 @@ namespace Heyipomoea.TwoD
             }
             rig.velocity = new Vector2(direction * speed, rig.velocity.y);
             ani.SetBool(parWalk, true);
-            return this;
+
+            timer += Time.deltaTime;
+            //print($"計時器 :{timer}");
+            if (timer > timeWander) startIdle = true;
+
+            if (startIdle)
+            {
+                return stateIdle;
+            }
+            else
+            {
+                return this;
+            }
         }
         [ContextMenu("取得角色原始座標")]
         private void GetOriginalPoint()
