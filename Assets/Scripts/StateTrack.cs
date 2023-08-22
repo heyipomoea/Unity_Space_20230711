@@ -71,7 +71,7 @@ namespace Heyipomoea.TwoD
         /// 攻擊目標碰撞檢測
         /// </summary>
         /// <returns>是否有目標進入範圍</returns>
-        private bool AttackTarget()
+        public bool AttackTarget()
         {
             Collider2D hit = Physics2D.OverlapBox(transform.position + transform.TransformDirection(attackOffset), attackSize, 0, layerTarget);
             return hit;
