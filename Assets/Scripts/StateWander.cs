@@ -15,7 +15,7 @@ namespace Heyipomoea.TwoD
         /// <summary>
         /// 方向: 右邊+1, 左邊-1
         /// </summary>
-        private int direction = 1;
+        public int direction = 1;
 
 
         private Vector3 pointLeft => pointOriginal + Vector3.right * offsetLeft;
@@ -25,12 +25,21 @@ namespace Heyipomoea.TwoD
         private string parWalk = "開關走路";
         private Rigidbody2D rig;
 
-        [SerializeField, Header("遊走狀態")]
+        [SerializeField, Header("等待狀態")]
         private StateIdle stateIdle;
-        [SerializeField, Header("是否開始游走")]
+        [SerializeField, Header("是否回復等待")]
         private bool startIdle;
         [SerializeField, Header("等待狀態的隨機時間範圍")]
         private Vector2 rangeWanderTime = new Vector2(0, 3);
+
+        [Header("追蹤區域資料")]
+        [SerializeField]
+        private Vector3 trackSize = Vector3.one;
+        [SerializeField]
+        private Vector3 trackOffset;
+
+        [SerializeField, Header("追蹤狀態")]
+        private StateTrack stateTrack;
 
         private float timeWander;
         private float timer;
@@ -40,6 +49,9 @@ namespace Heyipomoea.TwoD
             Gizmos.color = new Color(0, 0.8f, 0.9f, 1);
             Gizmos.DrawSphere(pointLeft, 0.1f);
             Gizmos.DrawSphere(pointRight, 0.1f);
+
+            Gizmos.color = new Color(1, 0.8f, 0.5f, 0.5f);
+            Gizmos.DrawCube(transform.position + transform.TransformDirection(trackOffset), trackSize);
         }
 
         private void Start()
@@ -51,7 +63,62 @@ namespace Heyipomoea.TwoD
 
         public override State RunCurrentState()
         {
-            if(Vector3.Distance(transform.position, pointRight) < 0.1f)
+            MoveAndFilp();
+            
+
+            timer += Time.deltaTime;
+            //print($"計時器 :{timer}");
+            if (timer > timeWander) startIdle = true;
+
+            if (TrackTarget())
+            {
+                ResetState();
+                return stateTrack;
+            }
+            else if (startIdle)
+            {
+                ResetState();
+                return stateIdle;
+            }
+            else
+            {
+                return this;
+            }
+        }
+
+        /// <summary>
+        /// 追蹤目標物件
+        /// </summary>
+        /// <returns>是否有追蹤物件進入區域</returns>
+        public bool TrackTarget()
+        {
+            Collider2D hit = Physics2D.OverlapBox(transform.position + transform.TransformDirection(trackOffset), trackSize, 0, layerTarget);
+            //print(hit.name);
+            if (!hit) return false;
+
+            if (hit.transform.position.x > pointLeft.x && hit.transform.position.x < pointRight.x) return hit;
+
+            return false;
+        }
+
+        /// <summary>
+        /// 重設狀態資料
+        /// </summary>
+        private void ResetState()
+        {
+            timer = 0;
+            startIdle = false;
+            timeWander = Random.Range(rangeWanderTime.x, rangeWanderTime.y);
+            rig.velocity = Vector3.zero;
+            ani.SetBool(parWalk, false);
+        }
+
+        /// <summary>
+        /// 移動與翻面
+        /// </summary>
+        private void MoveAndFilp()
+        {
+            if (Vector3.Distance(transform.position, pointRight) < 0.1f)
             {
                 direction = -1;
                 transform.eulerAngles = new Vector3(0, 180, 0);
@@ -63,20 +130,8 @@ namespace Heyipomoea.TwoD
             }
             rig.velocity = new Vector2(direction * speed, rig.velocity.y);
             ani.SetBool(parWalk, true);
-
-            timer += Time.deltaTime;
-            //print($"計時器 :{timer}");
-            if (timer > timeWander) startIdle = true;
-
-            if (startIdle)
-            {
-                return stateIdle;
-            }
-            else
-            {
-                return this;
-            }
         }
+
         [ContextMenu("取得角色原始座標")]
         private void GetOriginalPoint()
         {

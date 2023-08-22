@@ -79,13 +79,13 @@ namespace heyipomoea_twoD
             //if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
             if (h < 0)
             {
-                print("按下A");
+                //print("按下A");
                 transform.eulerAngles = Vector3.zero;
             }
             //else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
             else if (h > 0)
             {
-                print("按下D");
+                //print("按下D");
                 transform.eulerAngles = new Vector3(0, 180, 0);
             }
 
