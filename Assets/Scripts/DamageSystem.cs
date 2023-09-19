@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 
 
 namespace Heyipomoea.TwoD
@@ -10,6 +11,8 @@ namespace Heyipomoea.TwoD
     {
         [SerializeField, Header("資料")]
         private DataBasic data;
+        [SerializeField, Header("傷害值文字預製物")]
+        private GameObject prefabDamage;
 
         private float hp;
         private float hpMax;
@@ -27,6 +30,10 @@ namespace Heyipomoea.TwoD
         public void Damage(float getDamage)
         {
             hp -= getDamage;
+
+            GameObject tempDamage = Instantiate(prefabDamage, transform.position + Vector3.up, Quaternion.identity);
+            tempDamage.GetComponent<TextMeshPro>().text = getDamage.ToString();
+            Destroy(tempDamage, 1.5f);
 
             if (hp <= 0) Dead();
         }
