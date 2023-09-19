@@ -10,6 +10,8 @@ namespace Heyipomoea.TwoD
         private float timeAttackEnd = 1.5f;
         [SerializeField, Header("追蹤狀態")]
         private StateTrack stateTrack;
+        [SerializeField, Header("敵人資料")]
+        private DataBasic data;
 
         private string parAttack = "觸發攻擊";
         private float timer;
@@ -35,7 +37,7 @@ namespace Heyipomoea.TwoD
                     if(stateTrack.AttackTarget())
                     {
                         print("擊中玩家");
-                        damageSystem.Damage(30);
+                        damageSystem.Damage(data.attack);
                     }
                 }
                 else if (timer >= timeAttackEnd)
