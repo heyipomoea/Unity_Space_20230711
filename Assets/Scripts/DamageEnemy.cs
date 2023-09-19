@@ -5,6 +5,11 @@ namespace Heyipomoea.TwoD
 {
     public class DamageEnemy : DamageSystem
     {
+        [SerializeField, Header("狀態管理")]
+        private StateManager stateManager;
+        [SerializeField, Header("受傷狀態")]
+        private StateHit stateHit;
+
         private string nameBullet = "子彈";
 
         private void OnCollisionEnter2D(Collision2D collision)
@@ -15,7 +20,12 @@ namespace Heyipomoea.TwoD
                 float bulletAttack = collision.gameObject.GetComponent<Bullet>().dataPlayer.attack;
                 Damage(bulletAttack);
                 Destroy(collision.gameObject);
+                stateManager.stateDefault = stateHit;
             }
+        }
+        protected override void Dead()
+        {
+            Destroy(gameObject);
         }
     }
 }

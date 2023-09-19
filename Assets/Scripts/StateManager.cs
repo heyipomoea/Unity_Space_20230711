@@ -9,7 +9,7 @@ namespace Heyipomoea.TwoD
     public class StateManager : MonoBehaviour
     {
         [SerializeField, Header("預設狀態")]
-        private State stateDefault;
+        public State stateDefault;
 
         private void Update()
         {
