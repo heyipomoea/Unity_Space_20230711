@@ -20123,6 +20123,7 @@ MonoBehaviour:
   <layerTarget>k__BackingField:
     serializedVersion: 2
     m_Bits: 0
+  stateWander: {fileID: 1295277919}
 --- !u!114 &1295277923
 MonoBehaviour:
   m_ObjectHideFlags: 0

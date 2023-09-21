@@ -16,7 +16,7 @@ namespace Heyipomoea.TwoD
             Destroy(gameObject, 5);
         }
 
-        private void OnCollisionEnter(Collision collision)
+        private void OnCollisionEnter2D(Collision2D collision)
         {
             Destroy(gameObject);
         }
