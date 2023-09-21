@@ -20172,6 +20172,7 @@ MonoBehaviour:
   prefabDamage: {fileID: 8650291816184364398, guid: a181d1bb4bdc5934d8cab26086031055, type: 3}
   stateManager: {fileID: 1295277924}
   stateHit: {fileID: 1295277922}
+  prefabItem: {fileID: 6893904970341191178, guid: 41734e57954e51540a16db0fa9daa42d, type: 3}
 --- !u!1 &1407424565
 GameObject:
   m_ObjectHideFlags: 1
