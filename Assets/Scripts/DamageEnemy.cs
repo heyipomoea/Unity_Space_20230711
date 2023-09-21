@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Cinemachine;
+using UnityEngine;
 
 
 namespace Heyipomoea.TwoD
@@ -18,12 +19,14 @@ namespace Heyipomoea.TwoD
         private string parDead = "開關死亡";
         private Rigidbody2D rig;
         private Collider2D col;
+        private CinemachineImpulseSource impulseSource;
 
         private void Start()
         {
             ani = GetComponent<Animator>();
             rig = GetComponent<Rigidbody2D>();
             col = GetComponent<Collider2D>();
+            impulseSource = FindObjectOfType<CinemachineImpulseSource>();
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
@@ -35,6 +38,9 @@ namespace Heyipomoea.TwoD
                 Damage(bulletAttack);
                 Destroy(collision.gameObject);
                 stateManager.stateDefault = stateHit;
+                AudioClip sound = SoundManager.instance.soundEnemyHit;
+                SoundManager.instance.PlaySound(sound, 0.7f, 1.7f);
+                impulseSource.GenerateImpulse();
             }
         }
         protected override void Dead()
@@ -46,6 +52,8 @@ namespace Heyipomoea.TwoD
             rig.velocity = Vector3.zero;
             GameObject tempItem = Instantiate(prefabItem, transform.position + Vector3.up, Quaternion.identity);
             tempItem.GetComponent<Rigidbody2D>().AddForce(new Vector2(10, 100));
+            AudioClip sound = SoundManager.instance.soundEnemyDead;
+            SoundManager.instance.PlaySound(sound, 0.7f, 1.7f);
         }
     }
 }

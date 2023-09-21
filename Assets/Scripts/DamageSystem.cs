@@ -32,7 +32,7 @@ namespace Heyipomoea.TwoD
             hp -= getDamage;
 
             GameObject tempDamage = Instantiate(prefabDamage, transform.position + Vector3.up, Quaternion.identity);
-            tempDamage.GetComponent<TextMeshPro>().text = getDamage.ToString();
+            tempDamage.transform.GetChild(0).GetComponent<TextMeshPro>().text = getDamage.ToString();
             Destroy(tempDamage, 1.5f);
 
             if (hp <= 0) Dead();

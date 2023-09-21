@@ -267,9 +267,9 @@ MonoBehaviour:
   <layerTarget>k__BackingField:
     serializedVersion: 2
     m_Bits: 64
-  pointOriginal: {x: -3.11, y: -0.94, z: 0}
-  offsetLeft: -5.41
-  offsetRight: 4.87
+  pointOriginal: {x: 8.29, y: -1.99, z: 0}
+  offsetLeft: -5.22
+  offsetRight: 4.67
   speed: 1.5
   direction: 1
   stateIdle: {fileID: 5878407407073320612}
@@ -304,7 +304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: caff35fe4122f57499447b3009804313, type: 2}
-  prefabDamage: {fileID: 8650291816184364398, guid: a181d1bb4bdc5934d8cab26086031055, type: 3}
+  prefabDamage: {fileID: 2422363074007306486, guid: a181d1bb4bdc5934d8cab26086031055, type: 3}
   stateManager: {fileID: 3175541916680483587}
   stateHit: {fileID: 3288143806374357245}
   prefabItem: {fileID: 6893904970341191178, guid: 41734e57954e51540a16db0fa9daa42d, type: 3}
