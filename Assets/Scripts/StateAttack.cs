@@ -52,6 +52,15 @@ namespace Heyipomoea.TwoD
 
             return this;
         }
+
+
+        /// <summary>
+        /// 重設攻擊狀態
+        /// </summary>
+        public void ResetAttackState()
+        {
+            timer = 0;
+        }
     }
 }
 

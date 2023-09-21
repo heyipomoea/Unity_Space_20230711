@@ -14,6 +14,8 @@ namespace Heyipomoea.TwoD
 
         [SerializeField, Header("遊走狀態")]
         private StateWander stateWander;
+        [SerializeField, Header("攻擊狀態")]
+        private StateAttack stateAttack;
 
         private Transform player;
 
@@ -28,6 +30,7 @@ namespace Heyipomoea.TwoD
                 isHit = true;
                 ani.SetTrigger(parHit);
                 FlipToPlayer();
+                stateAttack.ResetAttackState();
             }
 
             if(isHit)
